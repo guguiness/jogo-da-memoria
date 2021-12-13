@@ -11,6 +11,8 @@ char **cria_tabuleiro(int);
 char nivel_dificuldade(int);
 void inicializa_tabuleiro(char **, int, char *);
 
+char *cartas;
+
 int main() {
     // deletar tabuleiro
     char **tabuleiro, *elementos;
@@ -31,19 +33,22 @@ int main() {
     switch(opcao_menu) {
         case 1:
             N = 4;
+            /* cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}; */
             break;
         case 2: 
             N = 6;
+            /* cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'}; */
             break;
         case 3:
             N = 8;
+            /* cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'}; */
             break;
     }
+    *cartas = nivel_dificuldade(N);
     tabuleiro = cria_tabuleiro(N);
-    elementos = nivel_dificuldade(opcao_menu); 
-    inicializa_tabuleiro(tabuleiro, N, elementos);
+    inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
     
-/* for (i = 0; i < N; i++)
+    for (i = 0; i < N; i++)
             for (j = 0; j < N; j++)
                 tabuleiro[i][j] = '*';
 
@@ -60,7 +65,7 @@ int main() {
                 c++;
                 cont = 0;
             }
-        } */
+        }
         
 
         printf("\n");
@@ -89,20 +94,10 @@ char **cria_tabuleiro(int dimens) {
 }
 
 char nivel_dificuldade(int nivel) {
-    switch (nivel) {
-        case 1: 
-            char cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
-            return (char *) cartas;
-            break;
-        case 2:
-            char cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
-            return (char *) cartas;
-            break;
-        case 3:
-            char cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
-            return (char *) cartas;
-            break;
-    }
+    char *x;
+
+    x = (char *) malloc(nivel * sizeof(char));
+    return x;
 }
 
 void inicializa_tabuleiro(char **tab, int dimens, char *cartas) {
