@@ -8,7 +8,7 @@
 A cada rodada o programa deve inicializar a matriz de forma diferente.*/
 
 char **cria_tabuleiro(int);
-char nivel_dificuldade(int);
+int nivel_dificuldade();
 void inicializa_tabuleiro(char **, int, char *);
 
 char *cartas;
@@ -24,29 +24,9 @@ int main() {
     printf("\nJOGO DA MEMÓRIA");
     printf("\n-------------------\n");
 
-    printf("\nNível de dificuldade\n");
-    printf("\n[1] Fácil");
-    printf("\n[2] Médio");
-    printf("\n[3] Difícil");
-    printf("\n\nDigite a opção escolhida: ");
-    scanf("%d", &opcao_menu);
-    switch(opcao_menu) {
-        case 1:
-            N = 4;
-            /* cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}; */
-            break;
-        case 2: 
-            N = 6;
-            /* cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'}; */
-            break;
-        case 3:
-            N = 8;
-            /* cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'}; */
-            break;
-    }
-    *cartas = nivel_dificuldade(N);
     tabuleiro = cria_tabuleiro(N);
-    inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
+    // *cartas = nivel_dificuldade(N);
+    // inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
     
     for (i = 0; i < N; i++)
             for (j = 0; j < N; j++)
@@ -81,7 +61,7 @@ int main() {
 
 char **cria_tabuleiro(int dimens) {
     char **x;
-    int i = 0;
+    int i;
 
     x = (char **) malloc(dimens * sizeof(char *));
     if(x == NULL) return NULL;
@@ -93,11 +73,30 @@ char **cria_tabuleiro(int dimens) {
     return x;
 }
 
-char nivel_dificuldade(int nivel) {
-    char *x;
+int nivel_dificuldade() {
+    int opcao_menu = 0, nivel;
 
-    x = (char *) malloc(nivel * sizeof(char));
-    return x;
+    printf("\nNível de dificuldade\n");
+    printf("\n[1] Fácil");
+    printf("\n[2] Médio");
+    printf("\n[3] Difícil");
+    printf("\n\nDigite a opção escolhida: ");
+    scanf("%d", &opcao_menu);
+    switch(opcao_menu) {
+        case 1:
+            nivel = 4;
+            return nivel;
+            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}; 
+            break;
+        case 2: 
+            return nivel = 6;
+            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
+            break;
+        case 3:
+            return nivel = 8;
+            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
+            break;
+    }
 }
 
 void inicializa_tabuleiro(char **tab, int dimens, char *cartas) {
