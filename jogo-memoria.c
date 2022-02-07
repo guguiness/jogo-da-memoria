@@ -10,12 +10,13 @@ A cada rodada o programa deve inicializar a matriz de forma diferente.*/
 char **cria_tabuleiro(int);
 int nivel_dificuldade();
 void inicializa_tabuleiro(int, int **);
+void mostra_tabuleiro(int, int **);
 
 char *cartas;
 
 int main() {
     // deletar tabuleiro
-    int **tabuleiro, *elementos;
+    int **tabuleiro;
     int c = 0, cont = 0, i, j, opcao_menu = 0, N = 0;
     srand(time(NULL));
     setlocale(LC_ALL, "Portuguese");
@@ -26,7 +27,8 @@ int main() {
 
     N = nivel_dificuldade();
     tabuleiro = cria_tabuleiro(N);
-    inicializa_tabuleiro(N, &tabuleiro);
+    inicializa_tabuleiro(N, tabuleiro);
+    mostra_tabuleiro(N, tabuleiro);
     // *cartas = nivel_dificuldade(N);
     // inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
     
@@ -47,13 +49,6 @@ int main() {
             }
         }
         
-
-        printf("\n");
-        for (i = 0; i < N; i++) {
-            for (j = 0; j < N; j++)
-                printf("%5c", tabuleiro[i][j]);
-            printf("\n");
-        }
 
     printf("\n\n---------------------------\n");
     return 0;
@@ -106,6 +101,18 @@ void inicializa_tabuleiro(int dimens, int **mat) {
 
     for (i = 0; i < dimens; i++)
         for (j = 0; j < dimens; j++)
-            mat = 0;
+            *mat = 0;
             mat++;
+}
+
+void mostra_tabuleiro(int dimens, int **mat) {
+    int i, j;
+    
+    printf("\n");
+    for (i = 0; i < dimens; i++) {
+        for (j = 0; j < dimens; j++)
+            printf("%5c", *mat);
+            mat++;
+        printf("\n");
+    }
 }
