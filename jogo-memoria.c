@@ -9,14 +9,14 @@ A cada rodada o programa deve inicializar a matriz de forma diferente.*/
 
 char **cria_tabuleiro(int);
 int nivel_dificuldade();
-void inicializa_tabuleiro(char **, int, char *);
+void inicializa_tabuleiro(int, int **);
 
 char *cartas;
 
 int main() {
     // deletar tabuleiro
-    char **tabuleiro, *elementos;
-    int c = 0, cont = 0, i, j, opcao_menu = 0, N;
+    int **tabuleiro, *elementos;
+    int c = 0, cont = 0, i, j, opcao_menu = 0, N = 0;
     srand(time(NULL));
     setlocale(LC_ALL, "Portuguese");
 
@@ -24,13 +24,13 @@ int main() {
     printf("\nJOGO DA MEMÓRIA");
     printf("\n-------------------\n");
 
+    N = nivel_dificuldade();
     tabuleiro = cria_tabuleiro(N);
+    inicializa_tabuleiro(N, &tabuleiro);
     // *cartas = nivel_dificuldade(N);
     // inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
     
-    for (i = 0; i < N; i++)
-            for (j = 0; j < N; j++)
-                tabuleiro[i][j] = '*';
+   
 
         while (c < (pow(N, 2) / 2)) {
             i = rand() % N;
@@ -59,6 +59,34 @@ int main() {
     return 0;
 }
 
+int nivel_dificuldade() {
+    int opcao_menu = 0, tam;
+
+    printf("\nNível de dificuldade\n");
+    printf("\n[1] Fácil");
+    printf("\n[2] Médio");
+    printf("\n[3] Difícil");
+    printf("\n\nDigite a opção escolhida: ");
+    scanf("%d", &opcao_menu);
+    switch(opcao_menu) {
+        case 1:
+            tam = 4;
+            return tam;
+            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}; 
+            break;
+        case 2: 
+            tam = 6;
+            return tam;
+            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
+            break;
+        case 3:
+            tam = 8;
+            return tam;
+            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
+            break;
+    }
+}
+
 char **cria_tabuleiro(int dimens) {
     char **x;
     int i;
@@ -73,50 +101,11 @@ char **cria_tabuleiro(int dimens) {
     return x;
 }
 
-int nivel_dificuldade() {
-    int opcao_menu = 0, nivel;
+void inicializa_tabuleiro(int dimens, int **mat) {
+    int i, j;
 
-    printf("\nNível de dificuldade\n");
-    printf("\n[1] Fácil");
-    printf("\n[2] Médio");
-    printf("\n[3] Difícil");
-    printf("\n\nDigite a opção escolhida: ");
-    scanf("%d", &opcao_menu);
-    switch(opcao_menu) {
-        case 1:
-            nivel = 4;
-            return nivel;
-            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}; 
-            break;
-        case 2: 
-            return nivel = 6;
-            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
-            break;
-        case 3:
-            return nivel = 8;
-            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
-            break;
-    }
-}
-
-void inicializa_tabuleiro(char **tab, int dimens, char *cartas) {
-    int i, j, c = 0, cont = 0;
     for (i = 0; i < dimens; i++)
-            for (j = 0; j < dimens; j++)
-                tab[i][j] = '*';
-
-        while (c < (pow(dimens, 2) / 2)) {
-            i = rand() % dimens;
-            j = rand() % dimens;
-
-            if (tab[i][j] == '*') {
-                tab[i][j] = cartas[c];
-                cont++;
-            } else continue;
-
-            if (cont == 2) {
-                c++;
-                cont = 0;
-            }
-        }
+        for (j = 0; j < dimens; j++)
+            mat = 0;
+            mat++;
 }
