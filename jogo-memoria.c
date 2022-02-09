@@ -9,8 +9,10 @@ A cada rodada o programa deve inicializar a matriz de forma diferente.*/
 
 char **cria_tabuleiro(int);
 int nivel_dificuldade();
-void inicializa_tabuleiro(int, int **);
-void mostra_tabuleiro(int, int **);
+char **cria_tabuleiro(int);
+void inicializa_tabuleiro(int, char **);
+void mostra_tabuleiro(int, char **);
+void valores_tabuleiro(char **, char *, int);
 
 char *cartas;
 
@@ -31,23 +33,10 @@ int main() {
     mostra_tabuleiro(N, tabuleiro);
     // *cartas = nivel_dificuldade(N);
     // inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
-    
+    valores_tabuleiro(tabuleiro, cartas, N);    
    
 
-        while (c < (pow(N, 2) / 2)) {
-            i = rand() % N;
-            j = rand() % N;
 
-            if (tabuleiro[i][j] == '*') {
-                tabuleiro[i][j] = cartas[c];
-                cont++;
-            } else continue;
-
-            if (cont == 2) {
-                c++;
-                cont = 0;
-            }
-        }
         
 
     printf("\n\n---------------------------\n");
@@ -96,7 +85,7 @@ char **cria_tabuleiro(int dimens) {
     return x;
 }
 
-void inicializa_tabuleiro(int dimens, int **mat) {
+void inicializa_tabuleiro(int dimens, char **mat) {
     int i, j;
 
     for (i = 0; i < dimens; i++)
@@ -105,7 +94,7 @@ void inicializa_tabuleiro(int dimens, int **mat) {
             mat++;
 }
 
-void mostra_tabuleiro(int dimens, int **mat) {
+void mostra_tabuleiro(int dimens, char **mat) {
     int i, j;
     
     printf("\n");
@@ -115,4 +104,23 @@ void mostra_tabuleiro(int dimens, int **mat) {
             mat++;
         printf("\n");
     }
+}
+
+void valores_tabuleiro(char **tabuleiro, char *cartas, int dimens) {
+    int i, j, c = 0, cont = 0;
+
+    while (c < (pow(dimens, 2) / 2)) {
+    i = rand() % dimens;
+    j = rand() % dimens;
+
+    if (tabuleiro[i][j] == '*') {
+        tabuleiro[i][j] = cartas[c];
+        cont++;
+    } else continue;
+
+    if (cont == 2) {
+        c++;
+        cont = 0;
+    }
+}
 }
