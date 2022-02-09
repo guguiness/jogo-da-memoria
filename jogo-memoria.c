@@ -4,7 +4,7 @@
 #include <math.h>
 #include <locale.h>
 
-/* Fazer um programa em C que crie uma matriz de tamanho NxN e inicialize de forma aleatï¿½ria, porï¿½m considerando pares de cartas como em um jogo de memï¿½ria.
+/* Fazer um programa em C que crie uma matriz de tamanho NxN e inicialize de forma aleatória, porém considerando pares de cartas como em um jogo de memória.
 A cada rodada o programa deve inicializar a matriz de forma diferente.*/
 
 char **cria_tabuleiro(int);
@@ -22,7 +22,7 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
 
     printf("\n\n-------------------");
-    printf("\nJOGO DA MEMï¿½RIA");
+    printf("\nJOGO DA MEMÓRIA");
     printf("\n-------------------\n");
 
     N = nivel_dificuldade();
@@ -58,10 +58,10 @@ int nivel_dificuldade() {
     int opcao_menu = 0, tam;
 
     printf("\nNï¿½vel de dificuldade\n");
-    printf("\n[1] Fï¿½cil");
-    printf("\n[2] Mï¿½dio");
-    printf("\n[3] Difï¿½cil");
-    printf("\n\nDigite a opï¿½ï¿½o escolhida: ");
+    printf("\n[1] Fácil");
+    printf("\n[2] Médio");
+    printf("\n[3] Difícil");
+    printf("\n\nDigite a opção escolhida: ");
     scanf("%d", &opcao_menu);
     switch(opcao_menu) {
         case 1:
