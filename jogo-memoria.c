@@ -4,7 +4,7 @@
 #include <math.h>
 #include <locale.h>
 
-/* Fazer um programa em C que crie uma matriz de tamanho NxN e inicialize de forma aleatória, porém considerando pares de cartas como em um jogo de memória.
+/* Fazer um programa em C que crie uma matriz de tamanho NxN e inicialize de forma aleatÃ³ria, porÃ©m considerando pares de cartas como em um jogo de memÃ³ria.
 A cada rodada o programa deve inicializar a matriz de forma diferente.*/
 
 char **cria_tabuleiro(int);
@@ -22,15 +22,13 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
 
     printf("\n\n-------------------");
-    printf("\nJOGO DA MEMÓRIA");
+    printf("\nJOGO DA MEMÃ“RIA");
     printf("\n-------------------\n");
 
     N = nivel_dificuldade();
     tabuleiro = cria_tabuleiro(N);
     inicializa_tabuleiro(N, tabuleiro);
     mostra_tabuleiro(N, tabuleiro);
-    // *cartas = nivel_dificuldade(N);
-    // inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
     valores_tabuleiro(tabuleiro, N);    
    	mostra_tabuleiro(N, tabuleiro);
 
@@ -44,11 +42,11 @@ int main() {
 int nivel_dificuldade() {
     int opcao_menu = 0, tam;
 
-    printf("\nNï¿½vel de dificuldade\n");
-    printf("\n[1] Fácil");
-    printf("\n[2] Médio");
-    printf("\n[3] Difícil");
-    printf("\n\nDigite a opção escolhida: ");
+    printf("\nNÃ­vel de dificuldade\n");
+    printf("\n[1] FÃ¡cil");
+    printf("\n[2] MÃ©dio");
+    printf("\n[3] DifÃ­cil");
+    printf("\n\nDigite a opÃ§Ã£o escolhida: ");
     scanf("%d", &opcao_menu);
     switch(opcao_menu) {
         case 1:
@@ -109,7 +107,7 @@ void valores_tabuleiro(char **tabuleiro, int dimens) {
     char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
     srand(time(NULL));
     
-    while (c < (16)) {
+    while (c < (pow(dimens, 2) / 2)) {
 	    i = rand() % dimens;
 	    j = rand() % dimens;
 
@@ -120,7 +118,7 @@ void valores_tabuleiro(char **tabuleiro, int dimens) {
 	
 	    if (cont == 2) {
 	        c++;
-	       	//cont = 0;
+	       	cont = 0;
 	    }
 	}
 }
