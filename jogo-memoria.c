@@ -4,7 +4,7 @@
 #include <math.h>
 #include <locale.h>
 
-/* Fazer um programa em C que crie uma matriz de tamanho NxN e inicialize de forma aleatÛria, porÈm considerando pares de cartas como em um jogo de memÛria.
+/* Fazer um programa em C que crie uma matriz de tamanho NxN e inicialize de forma aleatùria, porùm considerando pares de cartas como em um jogo de memùria.
 A cada rodada o programa deve inicializar a matriz de forma diferente.*/
 
 char **cria_tabuleiro(int);
@@ -22,15 +22,13 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
 
     printf("\n\n-------------------");
-    printf("\nJOGO DA MEM”RIA");
+    printf("\nJOGO DA MEMùRIA");
     printf("\n-------------------\n");
 
     N = nivel_dificuldade();
     tabuleiro = cria_tabuleiro(N);
     inicializa_tabuleiro(N, tabuleiro);
     mostra_tabuleiro(N, tabuleiro);
-    // *cartas = nivel_dificuldade(N);
-    // inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
     valores_tabuleiro(tabuleiro, N);    
    	mostra_tabuleiro(N, tabuleiro);
 
@@ -44,11 +42,11 @@ int main() {
 int nivel_dificuldade() {
     int opcao_menu = 0, tam;
 
-    printf("\nNÔøΩvel de dificuldade\n");
-    printf("\n[1] F·cil");
-    printf("\n[2] MÈdio");
-    printf("\n[3] DifÌcil");
-    printf("\n\nDigite a opÁ„o escolhida: ");
+    printf("\nNùvel de dificuldade\n");
+    printf("\n[1] Fùcil");
+    printf("\n[2] Mùdio");
+    printf("\n[3] Difùcil");
+    printf("\n\nDigite a opùùo escolhida: ");
     scanf("%d", &opcao_menu);
     switch(opcao_menu) {
         case 1:
@@ -102,25 +100,27 @@ void mostra_tabuleiro(int dimens, char **mat) {
     }
 }
 
-void valores_tabuleiro(char **tabuleiro, int dimens) {
+void valores_tabuleiro(char **mat, int dimens) {
     int i, j, c = 0, cont = 0;
     char cartasFacil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     char cartasMedio[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
     char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
     srand(time(NULL));
     
-    while (c < (16)) {
+    while (c < (pow(dimens, 2) / 2)) {
 	    i = rand() % dimens;
 	    j = rand() % dimens;
+        printf("\nTerminou de randomizar\n");
 
-	    if (tabuleiro[i][j] == '*') {
-	        tabuleiro[i][j] = cartasFacil[c];
+	    if (mat[i][j] == '*') {
+	        mat[i][j] = cartasFacil[c];
+            printf("%5c", mat[i][j]);
 	        cont++;
 	    } else continue;
 	
 	    if (cont == 2) {
 	        c++;
-	       	//cont = 0;
+	       	cont = 0;
 	    }
 	}
 }
