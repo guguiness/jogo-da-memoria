@@ -60,7 +60,6 @@ int nivel_dificuldade() {
         case 2: 
             tam = 6;
             return tam;
-            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
             break;
         case 3:
             tam = 8;
@@ -87,10 +86,11 @@ char **cria_tabuleiro(int dimens) {
 void inicializa_tabuleiro(int dimens, char **mat) {
     int i, j;
 
-    for (i = 0; i < dimens; i++)
+    for (i = 0; i < dimens; i++) {
         for (j = 0; j < dimens; j++)
             *mat = '*';
-            mat++;
+        mat++;        
+	}
 }
 
 void mostra_tabuleiro(int dimens, char **mat) {
