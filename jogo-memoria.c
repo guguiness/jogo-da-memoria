@@ -4,7 +4,7 @@
 #include <math.h>
 #include <locale.h>
 
-/* Fazer um programa em C que crie uma matriz de tamanho NxN e inicialize de forma aleatùria, porùm considerando pares de cartas como em um jogo de memùria.
+/* Fazer um programa em C que crie uma matriz de tamanho NxN e inicialize de forma aleat√≥ria, por√©m considerando pares de cartas como em um jogo de mem√≥ria.
 A cada rodada o programa deve inicializar a matriz de forma diferente.*/
 
 char **cria_tabuleiro(int);
@@ -18,11 +18,11 @@ void valores_tabuleiro(char **, int);
 int main() {
     // deletar tabuleiro
     int **tabuleiro;
-    int c = 0, cont = 0, i, j, opcao_menu = 0, N = 0;
+    int N;
     setlocale(LC_ALL, "Portuguese");
 
     printf("\n\n-------------------");
-    printf("\nJOGO DA MEMùRIA");
+    printf("\nJOGO DA MEM√ìRIA");
     printf("\n-------------------\n");
 
     N = nivel_dificuldade();
@@ -42,11 +42,11 @@ int main() {
 int nivel_dificuldade() {
     int opcao_menu = 0, tam;
 
-    printf("\nNùvel de dificuldade\n");
-    printf("\n[1] Fùcil");
-    printf("\n[2] Mùdio");
-    printf("\n[3] Difùcil");
-    printf("\n\nDigite a opùùo escolhida: ");
+    printf("\nN√≠vel de dificuldade\n");
+    printf("\n[1] F√°cil");
+    printf("\n[2] M√©dio");
+    printf("\n[3] Dif√≠cil");
+    printf("\n\nDigite a op√ß√£o escolhida: ");
     scanf("%d", &opcao_menu);
     switch(opcao_menu) {
         case 1:
@@ -107,7 +107,7 @@ void valores_tabuleiro(char **mat, int dimens) {
     char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
     srand(time(NULL));
     
-    while (c < (pow(dimens, 2) / 2)) {
+    while (c < (dimens*dimens / 2)) {
 	    i = rand() % dimens;
 	    j = rand() % dimens;
         printf("\nTerminou de randomizar\n");
