@@ -12,15 +12,13 @@ int nivel_dificuldade();
 char **cria_tabuleiro(int);
 void inicializa_tabuleiro(int, char **);
 void mostra_tabuleiro(int, char **);
-void valores_tabuleiro(char **, char *, int);
+void valores_tabuleiro(char **, int);
 
-char *cartas;
 
 int main() {
     // deletar tabuleiro
     int **tabuleiro;
     int c = 0, cont = 0, i, j, opcao_menu = 0, N = 0;
-    srand(time(NULL));
     setlocale(LC_ALL, "Portuguese");
 
     printf("\n\n-------------------");
@@ -33,8 +31,8 @@ int main() {
     mostra_tabuleiro(N, tabuleiro);
     // *cartas = nivel_dificuldade(N);
     // inicializa_tabuleiro(tabuleiro, N, nivel_dificuldade(N));
-    valores_tabuleiro(tabuleiro, cartas, N);    
-   
+    valores_tabuleiro(tabuleiro, N);    
+   	mostra_tabuleiro(N, tabuleiro);
 
 
         
@@ -64,7 +62,6 @@ int nivel_dificuldade() {
         case 3:
             tam = 8;
             return tam;
-            //
             break;
     }
 }
@@ -105,24 +102,25 @@ void mostra_tabuleiro(int dimens, char **mat) {
     }
 }
 
-void valores_tabuleiro(char **tabuleiro, char *cartas, int dimens) {
+void valores_tabuleiro(char **tabuleiro, int dimens) {
     int i, j, c = 0, cont = 0;
     char cartasFacil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     char cartasMedio[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
     char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
+    srand(time(NULL));
+    
+    while (c < (16)) {
+	    i = rand() % dimens;
+	    j = rand() % dimens;
 
-    while (c < (pow(dimens, 2) / 2)) {
-    i = rand() % dimens;
-    j = rand() % dimens;
-
-    if (tabuleiro[i][j] == '*') {
-        tabuleiro[i][j] = cartas[c];
-        cont++;
-    } else continue;
-
-    if (cont == 2) {
-        c++;
-        cont = 0;
-    }
-}
+	    if (tabuleiro[i][j] == '*') {
+	        tabuleiro[i][j] = cartasFacil[c];
+	        cont++;
+	    } else continue;
+	
+	    if (cont == 2) {
+	        c++;
+	       	//cont = 0;
+	    }
+	}
 }
