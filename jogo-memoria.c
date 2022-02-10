@@ -55,8 +55,7 @@ int nivel_dificuldade() {
     switch(opcao_menu) {
         case 1:
             tam = 4;
-            return tam;
-            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}; 
+            return tam; 
             break;
         case 2: 
             tam = 6;
@@ -66,7 +65,7 @@ int nivel_dificuldade() {
         case 3:
             tam = 8;
             return tam;
-            //cartas[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
+            //
             break;
     }
 }
@@ -108,6 +107,9 @@ void mostra_tabuleiro(int dimens, char **mat) {
 
 void valores_tabuleiro(char **tabuleiro, char *cartas, int dimens) {
     int i, j, c = 0, cont = 0;
+    char cartasFacil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+    char cartasMedio[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
+    char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
 
     while (c < (pow(dimens, 2) / 2)) {
     i = rand() % dimens;
