@@ -7,7 +7,6 @@
 // protótiopos de função
 char **cria_tabuleiro(int);
 int nivel_dificuldade();
-char **cria_tabuleiro(int);
 void inicializa_tabuleiro(int, char **);
 void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int);
@@ -113,25 +112,71 @@ void valores_tabuleiro(char **mat, int dimens) {
     char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
     srand(time(NULL));
     
-    // loop até que todo o vetor cartas seja percorrido
-    while (c < (pow(dimens, 2) / 2)) {
-	    // randomiza posição do tabuleiro que será substituída
-        i = rand() % dimens;
-	    j = rand() % dimens;
 
-        // caso a posição randomizada esteja vazia (*), substitui com a carta atual
-	    if (mat[i][j] == '*') {
-	        mat[i][j] = cartasFacil[c];
-            // conta quantas vezes a carta já foi usada
-	        cont++;
-	    } else continue;
-        
-        // verifica se a mesma carta já foi usada 2 vezes 
-	    if (cont == 2) {
-            // vai para a próxima carta
-	        c++;
-            // reinicia o contador
-	        cont = 0;
-	    }
-	}
+    if (dimens == 8)
+        // loop até que todo o vetor cartas seja percorrido
+        while (c < (pow(dimens, 2) / 2)) {
+            // randomiza posição do tabuleiro que será substituída
+            i = rand() % dimens;
+            j = rand() % dimens;
+
+            // caso a posição randomizada esteja vazia (*), substitui com a carta atual
+            if (mat[i][j] == '*') {
+                mat[i][j] = cartasFacil[c];
+                // conta quantas vezes a carta já foi usada
+                cont++;
+            } else continue;
+            
+            // verifica se a mesma carta já foi usada 2 vezes 
+            if (cont == 2) {
+                // vai para a próxima carta
+                c++;
+                // reinicia o contador
+                cont = 0;
+            }
+        } 
+        else if (dimens == 18)
+            // loop até que todo o vetor cartas seja percorrido
+            while (c < (pow(dimens, 2) / 2)) {
+                // randomiza posição do tabuleiro que será substituída
+                i = rand() % dimens;
+                j = rand() % dimens;
+
+                // caso a posição randomizada esteja vazia (*), substitui com a carta atual
+                if (mat[i][j] == '*') {
+                    mat[i][j] = cartasMedio[c];
+                    // conta quantas vezes a carta já foi usada
+                    cont++;
+                } else continue;
+                
+                // verifica se a mesma carta já foi usada 2 vezes 
+                if (cont == 2) {
+                    // vai para a próxima carta
+                    c++;
+                    // reinicia o contador
+                    cont = 0;
+                }
+            }
+        else
+            // loop até que todo o vetor cartas seja percorrido
+            while (c < (pow(dimens, 2) / 2)) {
+                // randomiza posição do tabuleiro que será substituída
+                i = rand() % dimens;
+                j = rand() % dimens;
+
+                // caso a posição randomizada esteja vazia (*), substitui com a carta atual
+                if (mat[i][j] == '*') {
+                    mat[i][j] = cartasDificil[c];
+                    // conta quantas vezes a carta já foi usada
+                    cont++;
+                } else continue;
+                
+                // verifica se a mesma carta já foi usada 2 vezes 
+                if (cont == 2) {
+                    // vai para a próxima carta
+                    c++;
+                    // reinicia o contador
+                    cont = 0;
+                }
+            }
 }
