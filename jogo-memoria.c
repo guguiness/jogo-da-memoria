@@ -12,6 +12,7 @@ char *cria_cartas(int);
 void inicializa_tabuleiro(int, char **, char);
 void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int, char *);
+void deleta(char **, char *, int); // não usada
 
 // CRIAR: função para deletar tabuleiro
 // ALTERAR: acentuação
@@ -29,7 +30,6 @@ int main() {
     N = nivel_dificuldade();
     // cria vetor com N cartas diferentes
     cartas = cria_cartas(N);
-
     // atribui memória alocada para tabuleiro
     tabuleiro = cria_tabuleiro(N);
     // preenche todas as posições do tabuleiro com '*'
@@ -109,7 +109,7 @@ void inicializa_tabuleiro(int tam, char **mat, char val) {
 
     for (i = 0; i < tam; i++)
         for (j = 0; j < tam; j++)
-        	mat[i][j]= val;   
+        	mat[i][j] = val;   
 }
 
 // função que imprime matriz
@@ -127,9 +127,6 @@ void mostra_tabuleiro(int tam, char **mat) {
 // função que preenche a matriz com as cartas
 void valores_tabuleiro(char **mat, int tam, char *cartas) {
     int i, j, c = 0, cont = 0;
-    // char cartasFacil[] = {'a', 'b', 'c', 'd'};
-    // char cartasMedio[] = {'a', 'b', 'c', 'd', 'e', 'f'};
-    // char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     srand(time(NULL));
     
 
@@ -199,4 +196,14 @@ void valores_tabuleiro(char **mat, int tam, char *cartas) {
                     cont = 0;
                 }
             }
+}
+
+void deleta(char **mat, char *vet, int tam) {
+    int i;
+    // deletar matriz
+    for (i = 0; i < tam; i++)
+        if (mat[i] != NULL) free(mat[i]);
+    if (mat != NULL) free(mat);
+    // deletar vetor
+    if (vet != NULL) free(vet);
 }
