@@ -5,7 +5,7 @@
 #include <locale.h>
 
 // protótiopos de função
-void erro();
+int erro();
 char **cria_tabuleiro(int);
 int nivel_dificuldade();
 char *cria_cartas(int);
@@ -44,9 +44,9 @@ int main() {
     return 0;
 }
 
-void erro() {
+int erro() {
     printf("\nERRO: falha ao alocar memoria");
-    exit(-1);
+    return -1;
 }
 
 // função de nivel de dificuldade
