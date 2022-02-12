@@ -9,7 +9,7 @@ void erro();
 char **cria_tabuleiro(int);
 int nivel_dificuldade();
 char *cria_cartas(int);
-void inicializa_tabuleiro(int, char **);
+void inicializa_tabuleiro(int, char **, char);
 void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int, char *);
 
@@ -33,7 +33,7 @@ int main() {
     // atribui memória alocada para tabuleiro
     tabuleiro = cria_tabuleiro(N);
     // preenche todas as posições do tabuleiro com '*'
-    inicializa_tabuleiro(N, tabuleiro);
+    inicializa_tabuleiro(N, tabuleiro, '*');
     // imprime matriz
     mostra_tabuleiro(N, tabuleiro);
     // substitui o "*" do tabuleiro por cartas randomizadas
@@ -81,8 +81,11 @@ int nivel_dificuldade() {
 char *cria_cartas(int tam) {
     char *v, cartas_base[14] =  {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'};
     int i;
-    v =  malloc(tam * sizeof(char));
+    // aloca espaço para o vetor
+    v = (char *)  malloc(tam * sizeof(char));
+    // erro quando não consegue alocar espaço na memória
     if (v == NULL) erro(); 
+    // atribui elementos de cartas_base para o vetor v
     for (i = 0; i < tam; i++)
         v[i] = cartas_base[i];
     return v;
@@ -91,23 +94,22 @@ char *cria_cartas(int tam) {
 char **cria_tabuleiro(int tam) {
      char **x;
 	 int i;
-	 x = (char **) malloc(tam*sizeof(char *));
-	 if (x==NULL) erro();  
-     for (i=0; i<tam; i++) {
-     	x[i]= (char *) malloc(tam*sizeof(char));
-		if (x[i]==NULL) erro();
+	 x = (char **) malloc(tam * sizeof(char *));
+	 if (x == NULL) erro();  
+     for (i = 0; i < tam; i++) {
+     	x[i]= (char *) malloc(tam * sizeof(char));
+		if (x[i] == NULL) erro();
 	 }
-	 printf("\nMatriz alocada com sucesso ");
 	 return x;
 }
 
 // função para preencher matriz com '*'
-void inicializa_tabuleiro(int tam, char **mat) {
+void inicializa_tabuleiro(int tam, char **mat, char val) {
     int i, j;
 
     for (i = 0; i < tam; i++)
         for (j = 0; j < tam; j++)
-        	mat[i][j]= '*';   
+        	mat[i][j]= val;   
 }
 
 // função que imprime matriz
