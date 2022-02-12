@@ -14,7 +14,7 @@ void valores_tabuleiro(char **, int);
 // função principal
 int main() {
     // CRIAR: deletar tabuleiro
-    int **tabuleiro;
+    char **tabuleiro;
     int N;
     setlocale(LC_ALL, "Portuguese");
 
@@ -23,6 +23,8 @@ int main() {
     printf("\n-------------------\n");
     // atribui tamanho do tabuleiro para N
     N = nivel_dificuldade();
+    printf("Valor de N: %i \n", N);
+    
     // atribui memória alocada para tabuleiro
     tabuleiro = cria_tabuleiro(N);
     // preenche todas as posições do tabuleiro com '*'
@@ -64,61 +66,62 @@ int nivel_dificuldade() {
             break;
     }
 }
-
 // função para alocar espaço para a matriz (tabuleiro)
-char **cria_tabuleiro(int dimens) {
-    char **x;
-    int i;
-
-    x = (char **) malloc(dimens * sizeof(char *));
-    if(x == NULL) return NULL;
-    for (i = 0; i < dimens; i++) {
-        x[i] = (char *) malloc(dimens * sizeof(char));
-        if (x[i] == NULL) return NULL;
-    }
-
-    return x;
+char **cria_tabuleiro(int tam) {
+     char **x;
+	 int i;
+	 x = (char **) malloc(tam*sizeof(char *));
+	 if (x==NULL) {
+	 	printf("Erro ao alocar memoria ");
+	 	exit(-1);
+	 }  
+     for (i=0; i<tam; i++) {
+     	x[i]= (char *) malloc(tam*sizeof(char));
+		if (x[i]==NULL) {
+			printf("Erro ao alocar memoria");
+			exit(-1);
+		} 
+	 }
+	 printf("Matriz alocada com sucesso ");
+	 return x;
 }
 
 // função para preencher matriz com '*'
-void inicializa_tabuleiro(int dimens, char **mat) {
+void inicializa_tabuleiro(int tam, char **mat) {
     int i, j;
 
-    for (i = 0; i < dimens; i++) {
-        for (j = 0; j < dimens; j++)
-            *mat = '*';
-        mat++;        
-	}
+    for (i = 0; i < tam; i++)
+        for (j = 0; j < tam; j++)
+        	mat[i][j]= '*';   
 }
 
 // função que imprime matriz
-void mostra_tabuleiro(int dimens, char **mat) {
+void mostra_tabuleiro(int tam, char **mat) {
     int i, j;
     
     printf("\n");
-    for (i = 0; i < dimens; i++) {
-        for (j = 0; j < dimens; j++)
-            printf("%5c", *mat);
-            mat++;
-        printf("\n");
+    for (i = 0; i < tam; i++) {
+        for (j = 0; j < tam; j++) 
+        	printf("  %c  ", mat[i][j]);
+		printf("\n");        
     }
 }
 
 // função que preenche a matriz com as cartas
-void valores_tabuleiro(char **mat, int dimens) {
+void valores_tabuleiro(char **mat, int tam) {
     int i, j, c = 0, cont = 0;
-    char cartasFacil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
-    char cartasMedio[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'};
-    char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '^', '@', '#', '?', '~', '&'};
+    char cartasFacil[] = {'a', 'b', 'c', 'd'};
+    char cartasMedio[] = {'a', 'b', 'c', 'd', 'e', 'f'};
+    char cartasDificil[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     srand(time(NULL));
     
 
-    if (dimens == 8)
+    if (tam == 4)
         // loop até que todo o vetor cartas seja percorrido
-        while (c < (pow(dimens, 2) / 2)) {
+        while (c < (pow(tam, 2) / 2)) {
             // randomiza posição do tabuleiro que será substituída
-            i = rand() % dimens;
-            j = rand() % dimens;
+            i = rand() % tam;
+            j = rand() % tam;
 
             // caso a posição randomizada esteja vazia (*), substitui com a carta atual
             if (mat[i][j] == '*') {
@@ -135,12 +138,12 @@ void valores_tabuleiro(char **mat, int dimens) {
                 cont = 0;
             }
         } 
-        else if (dimens == 18)
+        else if (tam == 6)
             // loop até que todo o vetor cartas seja percorrido
-            while (c < (pow(dimens, 2) / 2)) {
+            while (c < (pow(tam, 2) / 2)) {
                 // randomiza posição do tabuleiro que será substituída
-                i = rand() % dimens;
-                j = rand() % dimens;
+                i = rand() % tam;
+                j = rand() % tam;
 
                 // caso a posição randomizada esteja vazia (*), substitui com a carta atual
                 if (mat[i][j] == '*') {
@@ -159,10 +162,10 @@ void valores_tabuleiro(char **mat, int dimens) {
             }
         else
             // loop até que todo o vetor cartas seja percorrido
-            while (c < (pow(dimens, 2) / 2)) {
+            while (c < (pow(tam, 2) / 2)) {
                 // randomiza posição do tabuleiro que será substituída
-                i = rand() % dimens;
-                j = rand() % dimens;
+                i = rand() % tam;
+                j = rand() % tam;
 
                 // caso a posição randomizada esteja vazia (*), substitui com a carta atual
                 if (mat[i][j] == '*') {
