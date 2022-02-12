@@ -38,8 +38,7 @@ int main() {
     mostra_tabuleiro(N, tabuleiro);
     // substitui o "*" do tabuleiro por cartas randomizadas
     valores_tabuleiro(tabuleiro, N, cartas);    
-    mostra_tabuleiro(N, tabuleiro);
-
+    
     printf("\n\n---------------------------\n");
     return 0;
 }
