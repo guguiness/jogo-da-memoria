@@ -67,11 +67,11 @@ int nivel_dificuldade() {
             return tam; 
             break;
         case 2: // médio
-            tam = 8;
+            tam = 6;
             return tam;
             break;
         case 3: // difícil
-            tam = 14;
+            tam = 8;
             return tam;
             break;
     }
@@ -79,14 +79,14 @@ int nivel_dificuldade() {
 
 // função que aloca espaço na memória e preenche um vetor com as cartas, usando tam elementos do vetor cartas_base
 char *cria_cartas(int tam) {
-    char *v, cartas_base[14] =  {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'};
+    char *v, cartas_base[32] =  {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '=', '/', '#', '?', '+', '&'};
     int i;
     // aloca espaço para o vetor
     v = (char *)  malloc(tam * sizeof(char));
     // erro quando não consegue alocar espaço na memória
     if (v == NULL) erro(); 
     // atribui elementos de cartas_base para o vetor v
-    for (i = 0; i < tam; i++)
+    for (i = 0; i < (pow(tam, 2) / 2); i++)
         v[i] = cartas_base[i];
     return v;
 }
@@ -134,7 +134,7 @@ void valores_tabuleiro(char **mat, int tam, char *cartas) {
         // randomiza posição do tabuleiro que será substituída
         i = rand() % tam;
         j = rand() % tam;
-        
+
         // caso a posição randomizada esteja vazia (*), substitui com a carta atual
         if (mat[i][j] == '*') {
             mat[i][j] = cartas[c];
