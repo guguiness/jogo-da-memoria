@@ -7,14 +7,17 @@
 // protótiopos de função
 char **cria_tabuleiro(int);
 int nivel_dificuldade();
+char *cria_cartas(int);
 void inicializa_tabuleiro(int, char **);
 void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int);
 
+// CRIAR: função para tratar NULL
+// CRIAR: função para deletar tabuleiro
+
 // função principal
 int main() {
-    // CRIAR: deletar tabuleiro
-    char **tabuleiro;
+    char **tabuleiro, *cartas;
     int N;
     setlocale(LC_ALL, "Portuguese");
 
@@ -24,7 +27,8 @@ int main() {
     // atribui tamanho do tabuleiro para N
     N = nivel_dificuldade();
     printf("Valor de N: %i \n", N);
-    
+    cartas = cria_cartas(N);
+
     // atribui memória alocada para tabuleiro
     tabuleiro = cria_tabuleiro(N);
     // preenche todas as posições do tabuleiro com '*'
@@ -57,14 +61,28 @@ int nivel_dificuldade() {
             return tam; 
             break;
         case 2: // médio
-            tam = 6;
-            return tam;
-            break;
-        case 3: // difícil
             tam = 8;
             return tam;
             break;
+        case 3: // difícil
+            tam = 16;
+            return tam;
+            break;
     }
+}
+
+// função que aloca espaço na memória e preenche um vetor com as cartas, usando tam elementos do vetor cartas_base
+char *cria_cartas(int tam) {
+    char *v, cartas_base[16] =  {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'};
+    int i;
+    v =  malloc(tam * sizeof(char));
+    if (v == NULL){
+        printf("ERRO ao alocar memoria");
+        exit(-1);
+    } else printf("SUCESSO ao alocar memoria para CARTAS");
+    for (i = 0; i < tam; i++)
+        v[i] = cartas_base[i];
+    return v;
 }
 // função para alocar espaço para a matriz (tabuleiro)
 char **cria_tabuleiro(int tam) {
@@ -72,17 +90,17 @@ char **cria_tabuleiro(int tam) {
 	 int i;
 	 x = (char **) malloc(tam*sizeof(char *));
 	 if (x==NULL) {
-	 	printf("Erro ao alocar memoria ");
+	 	printf("\nERRO ao alocar memoria ");
 	 	exit(-1);
 	 }  
      for (i=0; i<tam; i++) {
      	x[i]= (char *) malloc(tam*sizeof(char));
 		if (x[i]==NULL) {
-			printf("Erro ao alocar memoria");
+			printf("\nERRO ao alocar memoria");
 			exit(-1);
 		} 
 	 }
-	 printf("Matriz alocada com sucesso ");
+	 printf("\nMatriz alocada com sucesso ");
 	 return x;
 }
 
