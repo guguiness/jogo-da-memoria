@@ -38,7 +38,7 @@ int main() {
     mostra_tabuleiro(N, tabuleiro);
     // substitui o "*" do tabuleiro por cartas randomizadas
     valores_tabuleiro(tabuleiro, N, cartas);    
-   	mostra_tabuleiro(N, tabuleiro);
+    mostra_tabuleiro(N, tabuleiro);
 
     printf("\n\n---------------------------\n");
     return 0;
@@ -92,15 +92,15 @@ char *cria_cartas(int tam) {
 }
 // função para alocar espaço para a matriz (tabuleiro)
 char **cria_tabuleiro(int tam) {
-     char **x;
-	 int i;
-	 x = (char **) malloc(tam * sizeof(char *));
-	 if (x == NULL) erro();  
-     for (i = 0; i < tam; i++) {
+    char **x;
+	int i;
+	x = (char **) malloc(tam * sizeof(char *));
+	if (x == NULL) erro();  
+    for (i = 0; i < tam; i++) {
      	x[i]= (char *) malloc(tam * sizeof(char));
 		if (x[i] == NULL) erro();
-	 }
-	 return x;
+	}
+	return x;
 }
 
 // função para preencher matriz com '*'
@@ -119,7 +119,7 @@ void mostra_tabuleiro(int tam, char **mat) {
     printf("\n");
     for (i = 0; i < tam; i++) {
         for (j = 0; j < tam; j++) 
-        	printf("  %c  ", mat[i][j]);
+            printf("  %c  ", mat[i][j]);
 		printf("\n");        
     }
 }
@@ -129,75 +129,30 @@ void valores_tabuleiro(char **mat, int tam, char *cartas) {
     int i, j, c = 0, cont = 0;
     srand(time(NULL));
     
-
-    if (tam == 4)
-        // loop até que todo o vetor cartas seja percorrido
-        while (c < (pow(tam, 2) / 2)) {
-            // randomiza posição do tabuleiro que será substituída
-            i = rand() % tam;
-            j = rand() % tam;
-
-            // caso a posição randomizada esteja vazia (*), substitui com a carta atual
-            if (mat[i][j] == '*') {
-                mat[i][j] = cartas[c];
-                // conta quantas vezes a carta já foi usada
-                cont++;
-            } else continue;
-            
-            // verifica se a mesma carta já foi usada 2 vezes 
-            if (cont == 2) {
-                // vai para a próxima carta
-                c++;
-                // reinicia o contador
-                cont = 0;
-            }
-        } 
-        else if (tam == 6)
-            // loop até que todo o vetor cartas seja percorrido
-            while (c < (pow(tam, 2) / 2)) {
-                // randomiza posição do tabuleiro que será substituída
-                i = rand() % tam;
-                j = rand() % tam;
-
-                // caso a posição randomizada esteja vazia (*), substitui com a carta atual
-                if (mat[i][j] == '*') {
-                    mat[i][j] = cartas[c];
-                    // conta quantas vezes a carta já foi usada
-                    cont++;
-                } else continue;
-                
-                // verifica se a mesma carta já foi usada 2 vezes 
-                if (cont == 2) {
-                    // vai para a próxima carta
-                    c++;
-                    // reinicia o contador
-                    cont = 0;
-                }
-            }
-        else
-            // loop até que todo o vetor cartas seja percorrido
-            while (c < (pow(tam, 2) / 2)) {
-                // randomiza posição do tabuleiro que será substituída
-                i = rand() % tam;
-                j = rand() % tam;
-
-                // caso a posição randomizada esteja vazia (*), substitui com a carta atual
-                if (mat[i][j] == '*') {
-                    mat[i][j] = cartas[c];
-                    // conta quantas vezes a carta já foi usada
-                    cont++;
-                } else continue;
-                
-                // verifica se a mesma carta já foi usada 2 vezes 
-                if (cont == 2) {
-                    // vai para a próxima carta
-                    c++;
-                    // reinicia o contador
-                    cont = 0;
-                }
-            }
+    // loop até que todo o vetor cartas seja percorrido
+    while (c < (pow(tam, 2) / 2)) {
+        // randomiza posição do tabuleiro que será substituída
+        i = rand() % tam;
+        j = rand() % tam;
+        
+        // caso a posição randomizada esteja vazia (*), substitui com a carta atual
+        if (mat[i][j] == '*') {
+            mat[i][j] = cartas[c];
+            // conta quantas vezes a carta já foi usada
+            cont++;
+        } else continue;
+        
+        // verifica se a mesma carta já foi usada 2 vezes 
+        if (cont == 2) {
+            // vai para a próxima carta
+            c++;
+            // reinicia o contador
+            cont = 0;
+        }
+    }
 }
 
+// procedimento para deletar matriz e vetor
 void deleta(char **mat, char *vet, int tam) {
     int i;
     // deletar matriz
