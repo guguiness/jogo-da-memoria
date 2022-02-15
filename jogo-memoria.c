@@ -14,7 +14,6 @@ void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int, char *);
 void deleta(char **, char *, int); // não usada
 
-// CRIAR: função para deletar tabuleiro
 // ALTERAR: acentuação
 
 // função principal
@@ -52,26 +51,41 @@ void erro() {
 int nivel_dificuldade() {
     int opcao_menu = 0, tam;
 
+    MENU:
     // mostra menu para o usuário
     printf("\nNivel de dificuldade\n");
     printf("\n[1] Facil");
     printf("\n[2] Medio");
     printf("\n[3] Dificil");
+    printf("\n[0] [Sair]");
     printf("\n\nDigite a opcao escolhida: ");
     scanf("%d", &opcao_menu);
     // define tamanho da matriz com base na opção selecionada
     switch(opcao_menu) {
         case 1: // fácil
+            printf("\nOpcao escolhida: FACIL\nTamanho do tabuleiro: 4 X 4\n");
             tam = 4;
             return tam; 
             break;
         case 2: // médio
+            printf("\nOpcao escolhida: MEDIO\nTamanho do tabuleiro: 6 X 6\n");
             tam = 6;
             return tam;
             break;
         case 3: // difícil
+            printf("\nOpcao escolhida: DIFICIL\nTamanho do tabuleiro: 8 X 8\n");
             tam = 8;
             return tam;
+            break;
+        case 0: // sair
+            printf("\nSaindo do programa...");
+            exit(0);
+            break;
+        default: // imprime o menu novamente
+            printf("\nOpcao invalida!");
+            printf("\n----------------------------");
+            printf("\nSelecione novamente\n");
+            goto MENU;
             break;
     }
 }
