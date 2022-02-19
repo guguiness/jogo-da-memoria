@@ -122,7 +122,7 @@ void inicializa_tabuleiro(int tam, char **mat, char val) {
 
     for (i = 0; i < tam; i++)
         for (j = 0; j < tam; j++)
-        	mat[i][j] = val;   
+            mat[i][j] = val;   
 }
 
 // função que imprime matriz
