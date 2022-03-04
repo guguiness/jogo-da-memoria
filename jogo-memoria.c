@@ -25,18 +25,13 @@ int main() {
     printf("\n\n-------------------");
     printf("\nJOGO DA MEMORIA");
     printf("\n-------------------\n");
-    // atribui tamanho do tabuleiro para N
-    N = nivel_dificuldade();
-    // cria vetor com N cartas diferentes
-    cartas = cria_cartas(N);
-    // atribui memória alocada para tabuleiro
-    tabuleiro = cria_tabuleiro(N);
-    // preenche todas as posições do tabuleiro com '*'
-    inicializa_tabuleiro(N, tabuleiro, '*');
-    // imprime matriz
-    mostra_tabuleiro(N, tabuleiro);
-    // substitui o "*" do tabuleiro por cartas randomizadas
-    valores_tabuleiro(tabuleiro, N, cartas);    
+
+    N = nivel_dificuldade();                                // atribui tamanho do tabuleiro para N
+    cartas = cria_cartas(N);                                // cria vetor com N cartas diferentes
+    tabuleiro = cria_tabuleiro(N);                          // atribui memória alocada para tabuleiro
+    inicializa_tabuleiro(N, tabuleiro, '*');                // preenche todas as posições do tabuleiro com '*'
+    mostra_tabuleiro(N, tabuleiro);                         // imprime matriz
+    valores_tabuleiro(tabuleiro, N, cartas);                // substitui o "*" do tabuleiro por cartas randomizadas   
     
     printf("\n\n---------------------------\n");
     return 0;
