@@ -13,6 +13,8 @@ void inicializa_tabuleiro(int, char **, char);
 void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int, char *);
 void jogar(char **, int);
+void revelaCartas(int, int, char **, int);
+void copiaMatriz(char **, int, char **);
 void deleta(char **, char *, int); // não usada
 
 // ALTERAR: acentuação
@@ -32,8 +34,10 @@ int main() {
     tabuleiro = cria_tabuleiro(N);                          // atribui memória alocada para tabuleiro
     inicializa_tabuleiro(N, tabuleiro, '*');                // preenche todas as posições do tabuleiro com '*'
     mostra_tabuleiro(N, tabuleiro);                         // imprime matriz
-    valores_tabuleiro(tabuleiro, N, cartas);                // substitui o "*" do tabuleiro por cartas randomizadas   
+    valores_tabuleiro(tabuleiro, N, cartas);   
+    mostra_tabuleiro(N, tabuleiro);             // substitui o "*" do tabuleiro por cartas randomizadas   
     jogar(tabuleiro, N);
+    mostra_tabuleiro(N, tabuleiro);
     
     printf("\n\n---------------------------\n");
     return 0;
@@ -168,6 +172,36 @@ void jogar(char **mat, int tam) {
     printf("\nDigite a posicao da carta que deseja virar (lin,col): ");
     scanf("%d,%d", &ln, &cl);
     revelaCartas(ln, cl, mat, tam);
+}
+
+// função que mostra apenas as cartas selecionadas pelo jogador
+void revelaCartas(int ln, int cl, char **mat, int tam) {
+    int i, j;
+    char **matCop;
+
+    matCop = cria_tabuleiro(tam);
+    copiaMatriz(mat, tam, matCop);
+
+    for (i = 0; i < tam; i++)
+        for (j = 0; j < tam; j++)
+            if (i!=ln || j!=cl)
+                matCop[i][j] = '*';   
+
+    printf("\n");
+    for (i = 0; i < tam; i++) {
+        for (j = 0; j < tam; j++) 
+            printf("  %c  ", matCop[i][j]);
+		printf("\n");        
+    }
+}
+
+// função que copia o tabuleiro original para mantê-lo intacto ao mostrar as cartas com a revelaCartas()
+void copiaMatriz(char **mat, int tam, char **matCop) {
+    int i, j;
+
+    for (i=0; i<tam; i++) 
+        for (j=0; j<tam; j++)
+            matCop[i][j] = mat[i][j];
 }
 
 // procedimento para deletar matriz e vetor
