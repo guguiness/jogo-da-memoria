@@ -171,15 +171,19 @@ void valores_tabuleiro(char **mat, int tam, char *cartas) {
 
 // função que pede e recebe posição das cartas que serão viradas
 void jogar(char **mat, int tam) {
-    int ln = 0, cl = 0;
+    int ln = 0, cl = 0, ganhou = 0;
     char **matCop;
 
     matCop = cria_tabuleiro(tam);
     inicializa_tabuleiro(tam, matCop, '*');
 
-    printf("\nDigite a posicao da carta que deseja virar (lin,col): ");
-    scanf("%d,%d", &ln, &cl);
-    revelaCartas(ln, cl, mat, matCop, tam);
+    while (ganhou==0) {
+        printf("\nDigite a posicao da carta que deseja virar (lin,col): ");
+        scanf("%d,%d", &ln, &cl);
+        revelaCartas(ln, cl, mat, matCop, tam);
+    }
+
+    deletaMatriz(matCop, tam);
 }
 
 // função que mostra apenas as cartas selecionadas pelo jogador
