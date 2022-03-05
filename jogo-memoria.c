@@ -14,6 +14,7 @@ void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int, char *);
 void jogar(char **, int);
 void revelaCartas(int, int, char **, char **, int);
+void verificaJogada(int, int, int, int, char **, char **);
 // void copiaMatriz(char **, int, char **);
 void deletaMatriz(char **, int);
 void deletaVetor(char *);
@@ -171,16 +172,29 @@ void valores_tabuleiro(char **mat, int tam, char *cartas) {
 
 // função que pede e recebe posição das cartas que serão viradas
 void jogar(char **mat, int tam) {
-    int ln = 0, cl = 0, ganhou = 0;
+    int ln = 0, cl = 0, ganhou = 0, rodada;
+    int l1, l2, c1, c2;
     char **matCop;
 
     matCop = cria_tabuleiro(tam);
     inicializa_tabuleiro(tam, matCop, '*');
 
     while (ganhou==0) {
-        printf("\nDigite a posicao da carta que deseja virar (lin,col): ");
-        scanf("%d,%d", &ln, &cl);
-        revelaCartas(ln, cl, mat, matCop, tam);
+        for (rodada=1; rodada<=2; rodada++) {
+            printf("\nDigite a posicao da carta que deseja virar (lin,col): ");
+            scanf("%d,%d", &ln, &cl);
+            if (rodada==1){
+                l1 = ln;
+                c1 = cl;
+            } else if (rodada==2) {
+                l2 = ln;
+                c2 = cl;
+            }
+            revelaCartas(ln, cl, mat, matCop, tam);
+            fflush(stdin);
+        }
+        verificaJogada(l1, c1, l2, c2, mat, matCop);
+        mostra_tabuleiro(tam, matCop);
     }
 
     deletaMatriz(matCop, tam);
@@ -203,6 +217,17 @@ void revelaCartas(int ln, int cl, char **mat, char **matCop, int tam) {
             printf("  %c  ", matCop[i][j]);
 		printf("\n");        
     }
+}
+
+
+void verificaJogada(int l1, int c1, int l2, int c2, char **mat, char **matCop) {
+    if (mat[l1][c1]==mat[l2][c2]) 
+        printf("\nPar encontrado!\n");
+        else {
+            matCop[l1][c1] = '*';
+            matCop[l2][c2] = '*';
+            printf("\nTente novamente\n");
+        }
 }
 
 // função que copia o tabuleiro original para mantê-lo intacto ao mostrar as cartas com a revelaCartas()
