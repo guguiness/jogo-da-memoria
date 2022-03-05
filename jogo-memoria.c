@@ -16,7 +16,7 @@ void jogar(char **, int);
 void revelaCartas(int, int, char **, int);
 void copiaMatriz(char **, int, char **);
 void deletaMatriz(char **, int);
-void deletaVetor(char *, int);
+void deletaVetor(char *);
 
 // ALTERAR: acentuação
 
@@ -40,6 +40,9 @@ int main() {
     jogar(tabuleiro, N);
     mostra_tabuleiro(N, tabuleiro);
     
+    deletaMatriz(tabuleiro, N);
+    deletaVetor(cartas);
+
     printf("\n\n---------------------------\n");
     return 0;
 }
@@ -194,6 +197,8 @@ void revelaCartas(int ln, int cl, char **mat, int tam) {
             printf("  %c  ", matCop[i][j]);
 		printf("\n");        
     }
+
+    deletaMatriz(matCop, tam);
 }
 
 // função que copia o tabuleiro original para mantê-lo intacto ao mostrar as cartas com a revelaCartas()
@@ -215,7 +220,7 @@ void deletaMatriz(char **mat, int tam) {
 }
 
 // procedimento para deletar vetor
-void deletaVetor(char *vet, int tam) {
+void deletaVetor(char *vet) {
     // deletar vetor
     if (vet != NULL) free(vet);
 }
