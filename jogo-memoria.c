@@ -12,6 +12,7 @@ char *cria_cartas(int);
 void inicializa_tabuleiro(int, char **, char);
 void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int, char *);
+void jogar(char **, int);
 void deleta(char **, char *, int); // não usada
 
 // ALTERAR: acentuação
@@ -32,6 +33,7 @@ int main() {
     inicializa_tabuleiro(N, tabuleiro, '*');                // preenche todas as posições do tabuleiro com '*'
     mostra_tabuleiro(N, tabuleiro);                         // imprime matriz
     valores_tabuleiro(tabuleiro, N, cartas);                // substitui o "*" do tabuleiro por cartas randomizadas   
+    jogar(tabuleiro, N);
     
     printf("\n\n---------------------------\n");
     return 0;
@@ -158,6 +160,14 @@ void valores_tabuleiro(char **mat, int tam, char *cartas) {
             cont = 0;
         }
     }
+}
+
+// função que pede e recebe posição das cartas que serão viradas
+void jogar(char **mat, int tam) {
+    int ln = 0, cl = 0;
+    printf("\nDigite a posicao da carta que deseja virar (lin,col): ");
+    scanf("%d,%d", &ln, &cl);
+    revelaCartas(ln, cl, mat, tam);
 }
 
 // procedimento para deletar matriz e vetor
