@@ -15,7 +15,8 @@ void valores_tabuleiro(char **, int, char *);
 void jogar(char **, int);
 void revelaCartas(int, int, char **, int);
 void copiaMatriz(char **, int, char **);
-void deleta(char **, char *, int); // não usada
+void deletaMatriz(char **, int);
+void deletaVetor(char *, int);
 
 // ALTERAR: acentuação
 
@@ -204,13 +205,17 @@ void copiaMatriz(char **mat, int tam, char **matCop) {
             matCop[i][j] = mat[i][j];
 }
 
-// procedimento para deletar matriz e vetor
-void deleta(char **mat, char *vet, int tam) {
+// procedimento para deletar matriz
+void deletaMatriz(char **mat, int tam) {
     int i;
     // deletar matriz
     for (i = 0; i < tam; i++)
         if (mat[i] != NULL) free(mat[i]);
     if (mat != NULL) free(mat);
+}
+
+// procedimento para deletar vetor
+void deletaVetor(char *vet, int tam) {
     // deletar vetor
     if (vet != NULL) free(vet);
 }
