@@ -194,13 +194,13 @@ void jogar(char **mat, int tam) {
             fflush(stdin);
         }
         verificaJogada(l1, c1, l2, c2, mat, matCop, &pares);
+        mostra_tabuleiro(tam, matCop);
         if (pares == tam) {
             printf("\n\n=================================");
             printf("\nPARABENS, VOCE GANHOU O JOGO!");
             printf("\n=================================");
             ganhou = 1;
         }
-        mostra_tabuleiro(tam, matCop);
     }
 
     deletaMatriz(matCop, tam);
