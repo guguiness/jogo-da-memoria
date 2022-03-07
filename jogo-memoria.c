@@ -15,7 +15,6 @@ void valores_tabuleiro(char **, int, char *);
 void jogar(char **, int);
 void revelaCartas(int, int, char **, char **, int);
 void verificaJogada(int, int, int, int, char **, char **, int *);
-// void copiaMatriz(char **, int, char **);
 void deletaMatriz(char **, int);
 void deletaVetor(char *);
 
@@ -213,10 +212,6 @@ void revelaCartas(int ln, int cl, char **mat, char **matCop, int tam) {
 
     matCop[ln][cl] = mat[ln][cl];
 
-    // for (i = 0; i < tam; i++)
-    //     for (j = 0; j < tam; j++)
-    //         if (i!=ln || j!=cl)
-    //             mat[i][j] = '*';   
 
     printf("\n");
     for (i = 0; i < tam; i++) {
@@ -238,15 +233,6 @@ void verificaJogada(int l1, int c1, int l2, int c2, char **mat, char **matCop, i
             printf("\nTente novamente\n");
         }
 }
-
-// função que copia o tabuleiro original para mantê-lo intacto ao mostrar as cartas com a revelaCartas()
-// void copiaMatriz(char **mat, int tam, char **matCop) {
-//     int i, j;
-
-//     for (i=0; i<tam; i++) 
-//         for (j=0; j<tam; j++)
-//             matCop[i][j] = mat[i][j];
-// }
 
 // procedimento para deletar matriz
 void deletaMatriz(char **mat, int tam) {
