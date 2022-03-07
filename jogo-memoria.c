@@ -14,7 +14,7 @@ void mostra_tabuleiro(int, char **);
 void valores_tabuleiro(char **, int, char *);
 void jogar(char **, int);
 void revelaCartas(int, int, char **, char **, int);
-void verificaJogada(int, int, int, int, char **, char **, int *);
+int verificaJogada(int, int, int, int, char **, char **);
 void deletaMatriz(char **, int);
 void deletaVetor(char *);
 
@@ -208,9 +208,11 @@ void jogar(char **mat, int tam) {
             revelaCartas(ln, cl, mat, matCop, tam);
             fflush(stdin);
         }
-        verificaJogada(l1, c1, l2, c2, mat, matCop, &pares);
+        if (verificaJogada(l1, c1, l2, c2, mat, matCop) == 1) {
+            pares++;
+        }
         mostra_tabuleiro(tam, matCop);
-        if (pares == tam) {
+        if (pares == (pow(tam, 2) / 2)) {
             printf("\n\n=================================");
             printf("\nPARABENS, VOCE GANHOU O JOGO!");
             printf("\n=================================");
@@ -237,15 +239,16 @@ void revelaCartas(int ln, int cl, char **mat, char **matCop, int tam) {
 }
 
 // função que verifica se o jogador encontrou um par ou não
-void verificaJogada(int l1, int c1, int l2, int c2, char **mat, char **matCop, int *par) {
+int verificaJogada(int l1, int c1, int l2, int c2, char **mat, char **matCop) {
     if (mat[l1][c1]==mat[l2][c2]) {
-        *par++;
         printf("\nPar encontrado!\n");
+        return 1;
     }
         else {
             matCop[l1][c1] = '*';
             matCop[l2][c2] = '*';
             printf("\nCartas nao correspondentes\nTente novamente\n");
+            return 0;
         }
 }
 
