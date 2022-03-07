@@ -181,10 +181,15 @@ void jogar(char **mat, int tam) {
 
     while (ganhou==0) {
         for (rodada=1; rodada<=2; rodada++) {
-            printf("\nDigite a posicao da carta que deseja virar (lin,col): ");
+            printf("\n\nDigite a posicao da carta que deseja virar (lin,col): ");
             scanf("%d,%d", &ln, &cl);
+            if (ln > tam || cl > tam) {
+                printf("\nERRO: Essa posicao nao existe\nTente novamente");
+                rodada--;
+                continue;
+            }
             if (matCop[ln][cl] != '*') {
-                printf("\nCarta ja revelada\nTente novamente");
+                printf("\nERRO: Carta ja revelada\nTente novamente");
                 matCop[ln][cl] = '*';
                 revelaCartas(ln, cl, mat, matCop, tam);
                 rodada--;
@@ -237,7 +242,7 @@ void verificaJogada(int l1, int c1, int l2, int c2, char **mat, char **matCop, i
         else {
             matCop[l1][c1] = '*';
             matCop[l2][c2] = '*';
-            printf("\nTente novamente\n");
+            printf("\nCartas nao correspondentes\nTente novamente\n");
         }
 }
 
