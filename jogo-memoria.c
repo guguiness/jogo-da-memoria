@@ -107,14 +107,6 @@ char *cria_cartas(int tam) {
     for (i = 0; i < (pow(tam, 2) / 2); i++)
         v[i] = cartas_base[i];
 
-
-    printf("\n\nVetor cartas: ");
-    for (i=0; i<(pow(tam, 2) / 2); i++) {
-        printf("%c ", v[i]);
-    }
-
-
-
     return v;
 }
 // função para alocar espaço para a matriz (tabuleiro)
@@ -192,8 +184,10 @@ void jogar(char **mat, int tam) {
         for (rodada=1; rodada<=2; rodada++) {
             printf("\n\nDigite a posicao da carta que deseja virar (lin,col): ");
             scanf("%d,%d", &ln, &cl);
+            system("cls");
             if (ln >= tam || cl >= tam) {
                 printf("\nERRO: Essa posicao nao existe\nTente novamente");
+                revelaCartas(ln, cl, mat, matCop, tam);
                 rodada--;
                 continue;
             }
