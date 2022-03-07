@@ -183,6 +183,13 @@ void jogar(char **mat, int tam) {
         for (rodada=1; rodada<=2; rodada++) {
             printf("\nDigite a posicao da carta que deseja virar (lin,col): ");
             scanf("%d,%d", &ln, &cl);
+            if (matCop[ln][cl] != '*') {
+                printf("\nCarta ja revelada\nTente novamente");
+                matCop[ln][cl] = '*';
+                revelaCartas(ln, cl, mat, matCop, tam);
+                rodada--;
+                continue;
+            }
             if (rodada==1){
                 l1 = ln;
                 c1 = cl;
