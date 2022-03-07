@@ -33,8 +33,7 @@ int main() {
     tabuleiro = cria_tabuleiro(N);                          // atribui memória alocada para tabuleiro
     inicializa_tabuleiro(N, tabuleiro, '*');                // preenche todas as posições do tabuleiro com '*'
     mostra_tabuleiro(N, tabuleiro);                         // imprime matriz
-    valores_tabuleiro(tabuleiro, N, cartas);   
-    mostra_tabuleiro(N, tabuleiro);             // substitui o "*" do tabuleiro por cartas randomizadas   
+    valores_tabuleiro(tabuleiro, N, cartas);   		         // substitui o "*" do tabuleiro por cartas randomizadas   
     jogar(tabuleiro, N);
     
     deletaMatriz(tabuleiro, N);
