@@ -100,12 +100,21 @@ char *cria_cartas(int tam) {
     char *v, cartas_base[32] =  {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '=', '/', '#', '?', '+', '&'};
     int i;
     // aloca espaço para o vetor
-    v = (char *)  malloc(tam * sizeof(char));
+    v = (char *)  malloc((pow(tam, 2) / 2) * sizeof(char));
     // erro quando não consegue alocar espaço na memória
     if (v == NULL) erro(); 
     // atribui elementos de cartas_base para o vetor v
     for (i = 0; i < (pow(tam, 2) / 2); i++)
         v[i] = cartas_base[i];
+
+
+    printf("\n\nVetor cartas: ");
+    for (i=0; i<(pow(tam, 2) / 2); i++) {
+        printf("%c ", v[i]);
+    }
+
+
+
     return v;
 }
 // função para alocar espaço para a matriz (tabuleiro)
@@ -183,7 +192,7 @@ void jogar(char **mat, int tam) {
         for (rodada=1; rodada<=2; rodada++) {
             printf("\n\nDigite a posicao da carta que deseja virar (lin,col): ");
             scanf("%d,%d", &ln, &cl);
-            if (ln > tam || cl > tam) {
+            if (ln >= tam || cl >= tam) {
                 printf("\nERRO: Essa posicao nao existe\nTente novamente");
                 rodada--;
                 continue;
