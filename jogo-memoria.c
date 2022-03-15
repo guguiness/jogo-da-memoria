@@ -4,11 +4,7 @@
 #include <math.h>
 #include <locale.h>
 
-<<<<<<< HEAD
 // protótiopos de função
-=======
-// prot�tiopos de fun��o
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 void erro();
 char **cria_tabuleiro(int);
 int nivel_dificuldade();
@@ -23,11 +19,7 @@ void deletaMatriz(char **, int);
 char *salvaJogo(char **, char **);      //terminar
 void deletaVetor(char *);
 
-<<<<<<< HEAD
 // função principal
-=======
-// fun��o principal
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 int main() {
     char **tabuleiro, *cartas;
     int N;
@@ -39,13 +31,8 @@ int main() {
 
     N = nivel_dificuldade();                                // atribui tamanho do tabuleiro para N
     cartas = cria_cartas(N);                                // cria vetor com N cartas diferentes
-<<<<<<< HEAD
     tabuleiro = cria_tabuleiro(N);                          // atribui memória alocada para tabuleiro
     inicializa_tabuleiro(N, tabuleiro, '*');                // preenche todas as posições do tabuleiro com '*'
-=======
-    tabuleiro = cria_tabuleiro(N);                          // atribui mem�ria alocada para tabuleiro
-    inicializa_tabuleiro(N, tabuleiro, '*');                // preenche todas as posi��es do tabuleiro com '*'
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
     mostra_tabuleiro(N, tabuleiro);                         // imprime matriz
     valores_tabuleiro(tabuleiro, N, cartas);   		        // substitui o "*" do tabuleiro por cartas randomizadas   
     jogar(tabuleiro, N);
@@ -58,24 +45,15 @@ int main() {
 }
 
 void erro() {
-<<<<<<< HEAD
     printf("\nERRO: falha ao alocar memória");
     exit(-1);
 }
 
 // função de nivel de dificuldade
-=======
-    printf("\nERRO: falha ao alocar mem�ria");
-    exit(-1);
-}
-
-// fun��o de nivel de dificuldade
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 int nivel_dificuldade() {
     int opcao_menu = 0, tam;
 
     MENU:
-<<<<<<< HEAD
     // mostra menu para o usuário
     printf("\nNivel de dificuldade\n");
     printf("\n[1] Fácil");
@@ -98,30 +76,6 @@ int nivel_dificuldade() {
             break;
         case 3: // difícil
             printf("\nOpção escolhida: DIFÍCIL\nTamanho do tabuleiro: 8 X 8\n");
-=======
-    // mostra menu para o usu�rio
-    printf("\nNivel de dificuldade\n");
-    printf("\n[1] F�cil");
-    printf("\n[2] M�dio");
-    printf("\n[3] Dif�cil");
-    printf("\n[0] [Sair]");
-    printf("\n\nDigite a op��o escolhida: ");
-    scanf("%d", &opcao_menu);
-    // define tamanho da matriz com base na op��o selecionada
-    switch(opcao_menu) {
-        case 1: // f�cil
-            printf("\nOp��o escolhida: F�CIL\nTamanho do tabuleiro: 4 X 4\n");
-            tam = 4;
-            return tam; 
-            break;
-        case 2: // m�dio
-            printf("\nOp��o escolhida: M�DIO\nTamanho do tabuleiro: 6 X 6\n");
-            tam = 6;
-            return tam;
-            break;
-        case 3: // dif�cil
-            printf("\nOp��o escolhida: DIF�CIL\nTamanho do tabuleiro: 8 X 8\n");
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
             tam = 8;
             return tam;
             break;
@@ -130,11 +84,7 @@ int nivel_dificuldade() {
             exit(0);
             break;
         default: // imprime o menu novamente
-<<<<<<< HEAD
             printf("\nOpção inválida!");
-=======
-            printf("\nOp��o inv�lida!");
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
             printf("\n----------------------------");
             printf("\nSelecione novamente\n");
             goto MENU;
@@ -142,7 +92,6 @@ int nivel_dificuldade() {
     }
 }
 
-<<<<<<< HEAD
 // função que aloca espaçoo na memória e preenche um vetor com as cartas, usando tam elementos do vetor cartas_base
 char *cria_cartas(int tam) {
     char *v, cartas_base[32] =  {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '=', '/', '#', '?', '+', '&'};
@@ -150,15 +99,6 @@ char *cria_cartas(int tam) {
     // aloca espaçoo para o vetor
     v = (char *)  malloc((pow(tam, 2) / 2) * sizeof(char));
     // erro quando não consegue alocar espaçoo na memória
-=======
-// fun��o que aloca espa�oo na mem�ria e preenche um vetor com as cartas, usando tam elementos do vetor cartas_base
-char *cria_cartas(int tam) {
-    char *v, cartas_base[32] =  {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '=', '/', '#', '?', '+', '&'};
-    int i;
-    // aloca espa�oo para o vetor
-    v = (char *)  malloc((pow(tam, 2) / 2) * sizeof(char));
-    // erro quando n�o consegue alocar espa�oo na mem�ria
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
     if (v == NULL) erro(); 
     // atribui elementos de cartas_base para o vetor v
     for (i = 0; i < (pow(tam, 2) / 2); i++)
@@ -166,12 +106,8 @@ char *cria_cartas(int tam) {
 
     return v;
 }
-<<<<<<< HEAD
 
 // função para alocar espaçoo para a matriz (tabuleiro)
-=======
-// fun��o para alocar espa�oo para a matriz (tabuleiro)
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 char **cria_tabuleiro(int tam) {
     char **x;
 	int i;
@@ -184,11 +120,7 @@ char **cria_tabuleiro(int tam) {
 	return x;
 }
 
-<<<<<<< HEAD
 // função para preencher matriz com '*'
-=======
-// fun��o para preencher matriz com '*'
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 void inicializa_tabuleiro(int tam, char **mat, char val) {
     int i, j;
 
@@ -197,11 +129,7 @@ void inicializa_tabuleiro(int tam, char **mat, char val) {
             mat[i][j] = val;   
 }
 
-<<<<<<< HEAD
 // função que imprime matriz
-=======
-// fun��o que imprime matriz
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 void mostra_tabuleiro(int tam, char **mat) {
     int i, j;
     
@@ -213,16 +141,10 @@ void mostra_tabuleiro(int tam, char **mat) {
     }
 }
 
-<<<<<<< HEAD
-// função que preenche a matriz com as cartas
-=======
-// fun��o que preenche a matriz com as cartas
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 void valores_tabuleiro(char **mat, int tam, char *cartas) {
     int i, j, c = 0, cont = 0;
     srand(time(NULL));
     
-<<<<<<< HEAD
     // loop até que todo o vetor cartas seja percorrido
     while (c < (pow(tam, 2) / 2)) {
         // randomiza posição do tabuleiro que será substituída
@@ -239,24 +161,6 @@ void valores_tabuleiro(char **mat, int tam, char *cartas) {
         // verifica se a mesma carta já foi usada 2 vezes 
         if (cont == 2) {
             // vai para a próxima carta
-=======
-    // loop at� que todo o vetor cartas seja percorrido
-    while (c < (pow(tam, 2) / 2)) {
-        // randomiza posi��o do tabuleiro que ser� substitu�da
-        i = rand() % tam;
-        j = rand() % tam;
-
-        // caso a posi��o randomizada esteja vazia (*), substitui com a carta atual
-        if (mat[i][j] == '*') {
-            mat[i][j] = cartas[c];
-            // conta quantas vezes a carta j� foi usada
-            cont++;
-        } else continue;
-        
-        // verifica se a mesma carta j� foi usada 2 vezes 
-        if (cont == 2) {
-            // vai para a pr�xima carta
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
             c++;
             // reinicia o contador
             cont = 0;
@@ -264,11 +168,7 @@ void valores_tabuleiro(char **mat, int tam, char *cartas) {
     }
 }
 
-<<<<<<< HEAD
 // função que pede e recebe posição das cartas que serão viradas
-=======
-// fun��o que pede e recebe posi��o das cartas que ser�o viradas
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 void jogar(char **mat, int tam) {
     int ln = 0, cl = 0, ganhou = 0, rodada, pares = 0;
     int l1, l2, c1, c2;
@@ -279,29 +179,17 @@ void jogar(char **mat, int tam) {
 
     while (ganhou==0) {
         for (rodada=1; rodada<=2; rodada++) {
-<<<<<<< HEAD
             printf("\n\nDigite a posição da carta que deseja virar (lin,col): ");
             scanf("%d,%d", &ln, &cl);
             system("cls");
             if (ln >= tam || cl >= tam) {
                 printf("\nERRO: Essa posição não existe\nTente novamente");
-=======
-            printf("\n\nDigite a posi��o da carta que deseja virar (lin,col): ");
-            scanf("%d,%d", &ln, &cl);
-            system("cls");
-            if (ln >= tam || cl >= tam) {
-                printf("\nERRO: Essa posi��o n�o existe\nTente novamente");
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
                 revelaCartas(ln, cl, mat, matCop, tam);
                 rodada--;
                 continue;
             }
             if (matCop[ln][cl] != '*') {
-<<<<<<< HEAD
                 printf("\nERRO: Carta já revelada\nTente novamente");
-=======
-                printf("\nERRO: Carta j� revelada\nTente novamente");
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
                 matCop[ln][cl] = '*';
                 revelaCartas(ln, cl, mat, matCop, tam);
                 rodada--;
@@ -323,11 +211,7 @@ void jogar(char **mat, int tam) {
         mostra_tabuleiro(tam, matCop);
         if (pares == (pow(tam, 2) / 2)) {
             printf("\n\n=================================");
-<<<<<<< HEAD
             printf("\nPARABÉNS, VOCÊ GANHOU O JOGO!");
-=======
-            printf("\nPARAB�NS, VOC� GANHOU O JOGO!");
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
             printf("\n=================================");
             ganhou = 1;
         }
@@ -336,11 +220,7 @@ void jogar(char **mat, int tam) {
     deletaMatriz(matCop, tam);
 }
 
-<<<<<<< HEAD
 // função que mostra apenas as cartas selecionadas pelo jogador
-=======
-// fun��o que mostra apenas as cartas selecionadas pelo jogador
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 void revelaCartas(int ln, int cl, char **mat, char **matCop, int tam) {
     int i, j;
 
@@ -355,11 +235,7 @@ void revelaCartas(int ln, int cl, char **mat, char **matCop, int tam) {
     }
 }
 
-<<<<<<< HEAD
 // função que verifica se o jogador encontrou um par ou não
-=======
-// fun��o que verifica se o jogador encontrou um par ou n�o
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
 int verificaJogada(int l1, int c1, int l2, int c2, char **mat, char **matCop) {
     if (mat[l1][c1]==mat[l2][c2]) {
         printf("\nPar encontrado!\n");
@@ -368,11 +244,7 @@ int verificaJogada(int l1, int c1, int l2, int c2, char **mat, char **matCop) {
         else {
             matCop[l1][c1] = '*';
             matCop[l2][c2] = '*';
-<<<<<<< HEAD
             printf("\nCartas não correspondentes\nTente novamente\n");
-=======
-            printf("\nCartas n�o correspondentes\nTente novamente\n");
->>>>>>> 732b8343c146b2095ff0b6d92b9269f739a0257c
             return 0;
         }
 }
